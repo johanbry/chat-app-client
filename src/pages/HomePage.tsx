@@ -1,5 +1,8 @@
+import { useState, ChangeEvent, FormEvent } from "react";
+
 import { useChatContext } from "../context/ChatContext";
-import { useState } from "react";
+import InputField from "../components/InputField";
+import Button from "../components/Button";
 
 type Props = {};
 
@@ -7,7 +10,11 @@ const HomePage = (props: Props) => {
   const { connectUser } = useChatContext();
   const [username, setUsername] = useState("");
 
-  const handleConnect = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handleConnect = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!username) return;
@@ -23,14 +30,15 @@ const HomePage = (props: Props) => {
       <div>
         <form onSubmit={handleConnect}>
           <label htmlFor="username">Please fill in username</label>
-          <input
+          <InputField
             type="text"
-            placeholder="username..."
+            placeholder="Enter username..."
             required
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleInput}
           />
-          <button type="submit">Connect</button>
+
+          <Button text={"Connect"} disabled={!username} />
         </form>
       </div>
     </>

@@ -1,7 +1,17 @@
+import RoomContainer from "../components/RoomContainer";
+import MessageContainer from "../components/MessageContainer";
+
 type Props = {};
 
 const ChatPage = (props: Props) => {
-  return <div>ChatPage</div>;
+  return (
+    <>
+      <h1>ChatPage</h1>
+      <RoomContainer />
+
+      <MessageContainer />
+    </>
+  );
 };
 
 export default ChatPage;
