@@ -1,0 +1,90 @@
+@import "../global";
+
+.homepage-wrapper {
+  display: grid;
+  grid-template-rows: 2fr auto 2fr;
+  height: 80%;
+  align-items: center;
+  justify-items: center;
+  padding: 0.8rem;
+
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.homepage-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  h1 {
+    font-size: 3rem;
+    color: $text;
+    margin: 0;
+    animation: bounce 5s forwards;
+  }
+
+  svg {
+    font-size: 5rem;
+    color: $secondary;
+    animation: bounce 5s forwards;
+  }
+}
+
+.divider {
+  display: block;
+  height: 4px;
+  width: 60%;
+  max-width: 18rem;
+  background: $secondary;
+}
+
+.homepage-form-container {
+  width: 100%;
+  max-width: 480px;
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* Media Queries */
+
+@media (min-width: 768px) {
+  .homepage-wrapper {
+    grid-template-columns: 2fr auto 2fr;
+    grid-template-rows: none;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .divider {
+    height: 40vh;
+    width: 4px;
+  }
+  .homepage-form-container {
+    form {
+      flex-direction: row;
+    }
+  }
+}
+
+/* keyframes for animations */
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0); // Bouncing at the original position
+  }
+  40% {
+    transform: translateY(-40px); // Bouncing up
+  }
+  60% {
+    transform: translateY(-20px); // Bouncing down
+  }
+}
