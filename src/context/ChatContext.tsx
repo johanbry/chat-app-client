@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { socket } from "../socket";
 
 interface IChatContext {
+  isMobile: boolean;
   rooms: IRoom[] | null;
   messages: IMessage[];
   user: IUser | null;
@@ -17,9 +18,10 @@ interface IChatContext {
   disconnectUser: () => void;
   createRoom: (room: string) => void;
   sendMessage: (message: string) => void;
+  getUsersInRoom: (room: string) => IUser[] | undefined;
 }
 
-interface IRoom {
+export interface IRoom {
   room: string;
   users: IUser[];
 }
@@ -44,11 +46,28 @@ export const ChatContext = createContext<IChatContext>(null as any);
 export const useChatContext = () => useContext(ChatContext);
 
 const ChatProvider = ({ children }: PropsWithChildren) => {
+  const [isMobile, setIsMobile] = useState(true);
   const [user, setUser] = useState<IUser | null>(null);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [currentRoom, setCurrentRoom] = useState<string>("");
   const [rooms, setRooms] = useState<IRoom[] | null>(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Update isMobile based on the screen width
+      setIsMobile(window.innerWidth <= 767);
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Initial check
+    handleResize();
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     socket.on("send_public_rooms", (rooms) => {
@@ -122,9 +141,15 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
     socket.emit("message_from_client", msg);
   };
 
+  const getUsersInRoom = (room: string): IUser[] | undefined => {
+    const currRoom = rooms?.find((element) => element.room === room);
+    if (currRoom) return currRoom.users;
+  };
+
   return (
     <ChatContext.Provider
       value={{
+        isMobile,
         connectUser,
         disconnectUser,
         rooms,
@@ -133,6 +158,7 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
         sendMessage,
         user,
         currentRoom,
+        getUsersInRoom,
       }}
     >
       {children}
