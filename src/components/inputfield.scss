@@ -1,0 +1,19 @@
+@import "../global";
+
+input {
+  all: unset;
+  background: $primary;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 0.4rem;
+  &::placeholder {
+    color: $lightText;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  input {
+    margin-bottom: 0;
+  }
+}
