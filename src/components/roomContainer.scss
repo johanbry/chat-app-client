@@ -1,0 +1,8 @@
+@import "../_global";
+
+.room-list-wrapper {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  overflow: scroll;
+}
