@@ -14,6 +14,7 @@ interface IChatContext {
   messages: IMessage[];
   user: IUser | null;
   currentRoom: string;
+  typingUsers: IUser[];
   connectUser: (username: string) => void;
   disconnectUser: () => void;
   createRoom: (room: string) => void;
@@ -26,7 +27,7 @@ export interface IRoom {
   users: IUser[];
 }
 
-interface IUser {
+export interface IUser {
   username: string;
   id: string;
 }
@@ -51,8 +52,40 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [currentRoom, setCurrentRoom] = useState<string>("");
   const [rooms, setRooms] = useState<IRoom[] | null>(null);
+  const [typingUsers, setTypingUsers] = useState<IUser[]>([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    function updateTypingUsers(username, socketId) {
+      const user = {
+        username,
+        id: socketId,
+      };
+
+      const resp = typingUsers.some((item) => {
+        return item.id === socketId;
+      });
+      console.log("svar", resp);
+
+      if (!resp) setTypingUsers((prev) => [...prev, user]);
+
+      console.log("typingUsers arr", typingUsers);
+    }
+
+    socket.on("send_typing_start", (username, socketId) =>
+      updateTypingUsers(username, socketId)
+    );
+
+    socket.on("send_typing_stop", () => {
+      // filter out username from list
+      //setTypingUsers((prev) => prev?.filter((user) => user !== username));
+    });
+
+    return () => {
+      socket.off("send_typing_start", updateTypingUsers);
+    };
+  }, [typingUsers]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,7 +110,7 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     socket.on("received_message", (message: IMessage) => {
-      console.log("received message: ", message);
+      // console.log("received message: ", message);
 
       setMessages((prev) => [...prev, message]);
     });
@@ -104,8 +137,8 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
       socket.emit("username_connected", username);
       setCurrentRoom("Lobby");
       setUser({ username, id: socket.id });
-      console.log("userstate namn", user?.username);
-      console.log("roomstate", currentRoom);
+      // console.log("userstate namn", user?.username);
+      // console.log("roomstate", currentRoom);
       navigate("/chat");
     });
   };
@@ -122,8 +155,9 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
     navigate("/");
   };
 
+  //!FIXME:
   const createRoom = (room: string) => {
-    if (!room) return;
+    if (!room || currentRoom === room) return;
 
     socket.emit("leave_room", currentRoom);
     setMessages([]);
@@ -159,6 +193,7 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
         user,
         currentRoom,
         getUsersInRoom,
+        typingUsers,
       }}
     >
       {children}
