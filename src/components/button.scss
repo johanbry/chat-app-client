@@ -20,9 +20,10 @@ button {
   justify-content: center;
   align-items: center;
   padding: 0;
-  background-color: transparent;
+  //background-color: transparent;
+  background-color: $secondary;
   svg {
-    color: $secondary;
+    color: $text;
   }
 }
 
