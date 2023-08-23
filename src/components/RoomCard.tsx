@@ -6,15 +6,21 @@ type Props = {
 };
 
 const RoomCard = ({ room }: Props) => {
-  const { isMobile } = useChatContext();
+  const { isMobile, createRoom } = useChatContext();
+
+  const handleJoinRoom = () => {
+    //!FIXME:
+    createRoom(room.room);
+  };
+
   return (
     <>
       {isMobile ? (
-        <button className="mobile-room-btn">
+        <button className="mobile-room-btn" onClick={handleJoinRoom}>
           {room.room} ({room.users.length})
         </button>
       ) : (
-        <button>
+        <button onClick={handleJoinRoom}>
           {room.room}
           {room.users.map((user) => (
             <span>{user.username}</span>
