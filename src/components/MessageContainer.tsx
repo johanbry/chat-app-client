@@ -5,32 +5,28 @@ import { socket } from "../socket";
 import Button from "./Button";
 import InputField from "./InputField";
 import ChatHeader from "./ChatHeader";
+import { IUser } from "../context/ChatContext";
 
 type Props = {};
 
 const MessageContainer = (props: Props) => {
   const [message, setMessage] = useState<string>("");
-  const [userTyping, setUserTyping] = useState<Set<string> | null>(null);
-  const { messages, sendMessage, currentRoom, user, isMobile } =
+  const { messages, sendMessage, currentRoom, user, isMobile, typingUsers } =
     useChatContext();
 
   useEffect(() => {
-    socket.on("send_typing_info", (username) => {
-      console.log(username, currentRoom);
-      const newSet = new Set(userTyping);
-      newSet.add(username);
-      setUserTyping(newSet);
+    if (message) {
+      socket.emit("user_typing_start", user?.username, currentRoom);
+    }
+    const timer = setTimeout(() => {
+      socket.emit("user_typing_stop", user?.username, currentRoom);
+    }, 3000);
 
-      setTimeout(() => {
-        const newSet = new Set(userTyping);
-        newSet.delete(username);
-        setUserTyping(newSet);
-      }, 5000);
-
-      //showUserTyping(username);
-      //setUserTyping(username);
-    });
-  }, []);
+    return () => {
+      console.log("clean up function run");
+      clearTimeout(timer);
+    };
+  }, [message]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
@@ -43,9 +39,9 @@ const MessageContainer = (props: Props) => {
     sendMessage(message);
   };
 
-  const handleKeyDown = () => {
-    socket.emit("user_typing", user.username, currentRoom);
-  };
+  // const handleKeyDown = () => {
+  //   socket.emit("user_typing", user.username, currentRoom);
+  // };
 
   return (
     <>
@@ -57,18 +53,19 @@ const MessageContainer = (props: Props) => {
           <p>Date: {message.date.toString()}</p>
         </div>
       ))}
-      {/* {userTyping &&
-        userTyping.size > 0 &&
-        Array.from(userTyping).map((user) => (
-          <p key={user}>{user} is typing...</p>
-        ))} */}
+      {typingUsers.length > 0 &&
+        typingUsers.map((user, index) => (
+          <p key={index}>{user.username} is typing...</p>
+        ))}
       <form onSubmit={handleSendMessage}>
         <InputField
           type={"text"}
           value={message}
-          onKeyDown={handleKeyDown}
+          //onKeyDown={handleKeyDown}
+          // onKeyDown={handleUserTyping}
           onChange={handleInput}
           required
+          placeholder="Enter message here..."
         />
         <Button text={"Send message"} disabled={!message} />
       </form>
