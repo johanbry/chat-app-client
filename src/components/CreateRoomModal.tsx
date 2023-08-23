@@ -1,8 +1,10 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, MouseEvent } from "react";
 
 import Button from "./Button";
 import InputField from "./InputField";
 import { useChatContext } from "../context/ChatContext";
+
+import "./createRoomModal.scss";
 
 type Props = {
   handleCloseModal: () => void;
@@ -22,31 +24,28 @@ const CreateRoomModal = ({ handleCloseModal }: Props) => {
     createRoom(createChatRoom);
     handleCloseModal();
   };
-  return (
-    <div
-      style={{
-        zIndex: 99,
-        backgroundColor: "rgba(92, 70, 140, 0.8)",
 
-        height: "100vh",
-        width: "100vw",
-        color: "#fff",
-        position: "absolute",
-        top: 0,
-      }}
-    >
-      <div>
+  const handleBackgroundClick = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.target == e.currentTarget) {
+      handleCloseModal();
+    }
+  };
+
+  return (
+    <div className="modal-background" onClick={(e) => handleBackgroundClick(e)}>
+      <div className="modal-wrapper">
         <h1>Create Room</h1>
         <form onSubmit={handleCreateRoom}>
           <InputField
             type="text"
             value={createChatRoom}
             onChange={handleInput}
+            placeholder="Enter room name..."
             required
           />
           <div>
             <Button
-              onClick={() => handleCloseModal()}
+              onClick={handleCloseModal}
               text={"Cancel"}
               disabled={false}
             />
