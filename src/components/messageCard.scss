@@ -1,0 +1,86 @@
+@import "../_global";
+
+.system-message {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $lightText;
+  font-size: 0.8rem;
+
+  &::before {
+    content: "";
+    width: 50px;
+    max-width: 100px;
+    height: 1.5px;
+    background: $lightText;
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  &::after {
+    content: "";
+    width: 50px;
+    max-width: 100px;
+    height: 1.5px;
+    background: $lightText;
+    display: inline-block;
+    margin-left: 5px;
+  }
+}
+
+.chat-message-wrapper {
+  display: flex;
+}
+
+.user-message-container {
+  margin: 0.4rem 0;
+  max-width: 80%;
+  display: flex;
+  justify-content: right;
+  flex-direction: column;
+}
+
+.own-container {
+  margin-left: auto;
+
+  small {
+    text-align: right;
+  }
+}
+
+.user-message {
+  position: relative;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  color: $text;
+}
+.user-message::before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  clip-path: polygon(25% 0, 100% 0, 0% 100%);
+}
+// chat bubble for own messages
+.own {
+  background-color: $secondary;
+  position: relative;
+}
+
+.clip-path-right {
+  position: absolute;
+  background-color: $secondary;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: -20px;
+  clip-path: polygon(25% 0, 100% 0, 0% 100%);
+}
+
+// chat bubble for other messages
+.other {
+  background-color: $tertiary;
+  position: relative;
+}

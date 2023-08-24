@@ -5,7 +5,10 @@ import { socket } from "../socket";
 import Button from "./Button";
 import InputField from "./InputField";
 import ChatHeader from "./ChatHeader";
+import MessageCard from "./MessageCard";
 import { IUser } from "../context/ChatContext";
+
+import "./messageContainer.scss";
 
 type Props = {};
 
@@ -13,17 +16,16 @@ const MessageContainer = (props: Props) => {
   const [message, setMessage] = useState<string>("");
   const { messages, sendMessage, currentRoom, user, isMobile, typingUsers } =
     useChatContext();
-
+  //!FIX, skicka bara start en gång (lokalt isTyping-state?)
   useEffect(() => {
     if (message) {
       socket.emit("user_typing_start", user?.username, currentRoom);
     }
     const timer = setTimeout(() => {
-      socket.emit("user_typing_stop", user?.username, currentRoom);
+      socket.emit("user_typing_stop", currentRoom);
     }, 3000);
 
     return () => {
-      console.log("clean up function run");
       clearTimeout(timer);
     };
   }, [message]);
@@ -37,6 +39,7 @@ const MessageContainer = (props: Props) => {
   const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendMessage(message);
+    setMessage("");
   };
 
   // const handleKeyDown = () => {
@@ -46,13 +49,12 @@ const MessageContainer = (props: Props) => {
   return (
     <>
       {!isMobile && <ChatHeader />}
-      {messages.map((message, index) => (
-        <div key={index}>
-          <p>From: {message.from}</p>
-          <p>Message: {message.message}</p>
-          <p>Date: {message.date.toString()}</p>
-        </div>
-      ))}
+      <section className="chat-window">
+        {messages.map((message, index) => (
+          <MessageCard key={index} message={message} />
+        ))}
+      </section>
+
       {typingUsers.length > 0 &&
         typingUsers.map((user, index) => (
           <p key={index}>{user.username} is typing...</p>
