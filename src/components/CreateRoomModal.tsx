@@ -48,6 +48,7 @@ const CreateRoomModal = ({ handleCloseModal }: Props) => {
               onClick={handleCloseModal}
               text={"Cancel"}
               disabled={false}
+              type="button"
             />
             <Button text={"Create room"} disabled={!createChatRoom} />
           </div>
