@@ -1,5 +1,6 @@
 import { IMessage, useChatContext } from "../context/ChatContext";
 import "./messageCard.scss";
+import { formatDate } from "../utils/helpers";
 
 type Props = {
   message: IMessage;
@@ -15,14 +16,14 @@ const MessageCard = ({ message }: Props) => {
         <article className="user-message-container own-container">
           <small>{message.from}</small>
           <p className="user-message own">{message.message}</p>
-          <small>{message.date.toString()}</small>
+          <small>{formatDate(message.date)}</small>
           <div className="clip-path-right"></div>
         </article>
       ) : (
         <article className="user-message-container other-container">
           <small>{message.from}</small>
           <p className="user-message other">{message.message}</p>
-          <small>{message.date.toString()}</small>
+          <small>{formatDate(message.date)}</small>
           <div className="clip-path-left"></div>
         </article>
       )}
