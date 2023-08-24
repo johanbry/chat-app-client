@@ -33,7 +33,7 @@ export interface IUser {
 }
 
 export interface IMessage {
-  date: string;
+  date: Date;
   from: string;
   message: string;
 }
