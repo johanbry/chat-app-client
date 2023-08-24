@@ -7,6 +7,8 @@ import { useChatContext } from "../context/ChatContext";
 import ChatHeader from "../components/ChatHeader";
 import CreateRoomModal from "../components/CreateRoomModal";
 
+import "./chatpage.scss";
+
 type Props = {};
 
 const ChatPage = (props: Props) => {
@@ -22,13 +24,13 @@ const ChatPage = (props: Props) => {
   };
 
   return (
-    <>
+    <div className="chat-page-container">
       {/* <h1>ChatPage</h1> */}
       {isMobile && <ChatHeader handleShowModal={handleShowModal} />}
       <RoomContainer />
       <MessageContainer />
       {showModal && <CreateRoomModal handleCloseModal={handleCloseModal} />}
-    </>
+    </div>
   );
 };
 
