@@ -6,7 +6,7 @@ import { useChatContext } from "../context/ChatContext";
 import "./chatHeader.scss";
 
 type Props = {
-  handleShowModal: () => void;
+  handleShowModal?: () => void;
 };
 
 const ChatHeader = ({ handleShowModal }: Props) => {
@@ -29,7 +29,7 @@ const ChatHeader = ({ handleShowModal }: Props) => {
         <small>{usernames?.join(", ")}</small>
       </div>
 
-      {isMobile && (
+      {isMobile && handleShowModal && (
         <Button
           Icon={IoAddCircleOutline}
           disabled={false}
