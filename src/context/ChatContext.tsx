@@ -32,7 +32,7 @@ export interface IUser {
   id: string;
 }
 
-interface IMessage {
+export interface IMessage {
   date: string;
   from: string;
   message: string;
@@ -57,35 +57,25 @@ const ChatProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    function updateTypingUsers(username, socketId) {
-      const user = {
-        username,
-        id: socketId,
-      };
-
-      const resp = typingUsers.some((item) => {
-        return item.id === socketId;
+    function updateTypingUsers(username: string, socketId: string) {
+      setTypingUsers((prev) => {
+        if (prev.some((user) => user.id === socketId)) return prev;
+        return [...prev, { username, id: socketId }];
       });
-      console.log("svar", resp);
-
-      if (!resp) setTypingUsers((prev) => [...prev, user]);
-
-      console.log("typingUsers arr", typingUsers);
     }
 
     socket.on("send_typing_start", (username, socketId) =>
       updateTypingUsers(username, socketId)
     );
 
-    socket.on("send_typing_stop", () => {
-      // filter out username from list
-      //setTypingUsers((prev) => prev?.filter((user) => user !== username));
+    socket.on("send_typing_stop", (socketId) => {
+      setTypingUsers((prev) => prev.filter((user) => user.id !== socketId));
     });
 
     return () => {
       socket.off("send_typing_start", updateTypingUsers);
     };
-  }, [typingUsers]);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
