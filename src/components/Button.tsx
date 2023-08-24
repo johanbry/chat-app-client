@@ -8,6 +8,7 @@ type Props = {
   onChange?: () => void;
   onClick?: () => void;
   type?: "submit" | "button" | "reset";
+  className?: string;
 };
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   disabled = true,
   onChange,
   onClick,
+  className,
   type = "submit",
 }: Props) => {
   return (
@@ -24,7 +26,8 @@ const Button = ({
       onChange={onChange}
       type={type}
       onClick={onClick}
-      className={Icon ? "icon-btn" : ""}
+      // className={Icon ? "icon-btn" : "" }
+      className={className}
       //className={disabled ? "disabled" : ""}
     >
       {text}

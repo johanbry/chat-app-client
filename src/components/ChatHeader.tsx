@@ -22,6 +22,7 @@ const ChatHeader = ({ handleShowModal }: Props) => {
           Icon={BiLogOutCircle}
           disabled={false}
           onClick={disconnectUser}
+          className="icon-btn"
         />
       )}
       <div className="room-container">
@@ -34,6 +35,7 @@ const ChatHeader = ({ handleShowModal }: Props) => {
           Icon={IoAddCircleOutline}
           disabled={false}
           onClick={() => handleShowModal()}
+          className="icon-btn"
         />
       )}
     </div>
