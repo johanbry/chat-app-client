@@ -20,10 +20,16 @@ button {
   justify-content: center;
   align-items: center;
   padding: 0;
-  //background-color: transparent;
+  border-radius: 0;
   background-color: $secondary;
   svg {
     color: $text;
+  }
+}
+
+.icon-send-btn {
+  svg {
+    padding: 0.4rem;
   }
 }
 

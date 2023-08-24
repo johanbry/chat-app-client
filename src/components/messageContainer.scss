@@ -2,4 +2,15 @@
 
 .chat-window {
   padding: 1rem;
+  overflow-y: auto;
+  flex: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+form {
+  display: flex;
 }

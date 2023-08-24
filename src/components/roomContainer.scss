@@ -4,5 +4,13 @@
   display: flex;
   gap: 0.4rem;
   padding: 0.4rem;
-  overflow: scroll;
+  overflow-x: auto;
+  min-height: 3rem;
+  background-color: $tertiary;
+  //Hide scrollbar but allow functionality for all browsers
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

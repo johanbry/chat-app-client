@@ -55,6 +55,7 @@
   padding: 1rem;
   display: flex;
   color: $text;
+  word-break: break-word;
 }
 .user-message::before {
   content: "";
