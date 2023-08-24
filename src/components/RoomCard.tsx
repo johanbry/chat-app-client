@@ -23,7 +23,7 @@ const RoomCard = ({ room }: Props) => {
         <button onClick={handleJoinRoom}>
           {room.room}
           {room.users.map((user) => (
-            <span>{user.username}</span>
+            <span key={user.id}>{user.username}</span>
           ))}
         </button>
       )}
