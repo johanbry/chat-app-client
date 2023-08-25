@@ -27,9 +27,23 @@ button {
   }
 }
 
+.transparent-btn {
+  background-color: transparent;
+  svg {
+    color: $secondary;
+  }
+}
+
 .icon-send-btn {
   svg {
     padding: 0.4rem;
+  }
+}
+
+.large-btn {
+  font-size: 80px;
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
