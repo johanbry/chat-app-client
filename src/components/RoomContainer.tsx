@@ -1,33 +1,34 @@
 //import { useState, ChangeEvent, FormEvent } from "react";
 
 import { useChatContext } from "../context/ChatContext";
-//import Button from "./Button";
+import { IoAddCircleOutline } from "react-icons/io5";
+
+import Button from "./Button";
 import RoomCard from "./RoomCard";
 
 import "./roomContainer.scss";
 
-type Props = {};
+type Props = {
+  handleShowModal: () => void;
+};
 
-const RoomContainer = (props: Props) => {
-  const { rooms, createRoom, user, currentRoom } = useChatContext();
-  // const [createChatRoom, setCreateChatRoom] = useState<string>("");
-
-  // const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setCreateChatRoom(e.target.value);
-  //   // createRoom(createChatRoom);
-  // };
-
-  // const handleCreateRoom = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   createRoom(createChatRoom);
-  // };
+const RoomContainer = ({ handleShowModal }: Props) => {
+  const { rooms } = useChatContext();
 
   return (
     <>
-      <section className="room-list-wrapper">
+      <div className="room-list-wrapper">
         {rooms &&
           rooms.map((room, index) => <RoomCard key={index} room={room} />)}
-      </section>
+        {handleShowModal && (
+          <Button
+            Icon={IoAddCircleOutline}
+            disabled={false}
+            onClick={() => handleShowModal()}
+            className="icon-btn transparent-btn"
+          />
+        )}
+      </div>
     </>
   );
 };
