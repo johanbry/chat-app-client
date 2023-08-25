@@ -1,5 +1,24 @@
-.chat-page-container {
+.chat-page-container-mobile {
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+// .chat-page-container-desktop {
+//   display: grid;
+//   grid-template-columns: 25% auto;
+//   height: 100vh;
+// }
+
+.chat-page-container-desktop {
+  display: flex;
+  //flex-direction: column;
+  height: 100vh;
+}
+
+.chat-window-container-desktop {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
 }
