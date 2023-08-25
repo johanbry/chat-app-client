@@ -3,9 +3,10 @@ import "./roomCardDesktop.scss";
 
 type Props = {
   room: IRoom;
+  current: boolean;
 };
 
-const RoomCardDesktop = ({ room }: Props) => {
+const RoomCardDesktop = ({ room, current }: Props) => {
   const { createRoom } = useChatContext();
 
   const handleJoinRoom = () => {
@@ -14,7 +15,10 @@ const RoomCardDesktop = ({ room }: Props) => {
   };
 
   return (
-    <div className="desktop-room-btn" onClick={handleJoinRoom}>
+    <div
+      className={`desktop-room-btn ${current ? "current" : ""}`}
+      onClick={handleJoinRoom}
+    >
       <h4>{room.room}</h4>
       <div>
         {room.users.map((user) => (

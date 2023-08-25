@@ -29,6 +29,15 @@
   }
 }
 
+.current {
+  background-color: $secondary;
+  div {
+    span {
+      background-color: $primary;
+    }
+  }
+}
+
 span {
   font-size: 0.6rem;
   padding: 0.2rem;

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const RoomContainerDesktop = ({ handleShowModal }: Props) => {
-  const { rooms } = useChatContext();
+  const { rooms, currentRoom } = useChatContext();
 
   return (
     <div className="sidebar-container">
@@ -19,7 +19,11 @@ const RoomContainerDesktop = ({ handleShowModal }: Props) => {
       <div className="sidebar-room-wrapper">
         {rooms &&
           rooms.map((room, index) => (
-            <RoomCardDesktop key={index} room={room} />
+            <RoomCardDesktop
+              key={index}
+              room={room}
+              current={room.room === currentRoom}
+            />
           ))}
       </div>
       <div>
