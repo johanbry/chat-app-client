@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import RoomContainer from "../components/RoomContainer";
+import RoomContainerDesktop from "../components/RoomContainerDesktop";
 import MessageContainer from "../components/MessageContainer";
 import Button from "../components/Button";
 import { useChatContext } from "../context/ChatContext";
@@ -24,13 +25,29 @@ const ChatPage = (props: Props) => {
   };
 
   return (
-    <div className="chat-page-container">
-      {/* <h1>ChatPage</h1> */}
-      {isMobile && <ChatHeader handleShowModal={handleShowModal} />}
-      <RoomContainer />
-      <MessageContainer />
+    <>
+      {/* // <div className="chat-page-container">
+    //   {isMobile && <ChatHeader handleShowModal={handleShowModal} />}
+    //   <RoomContainer />
+    //   <MessageContainer />
+    //   {showModal && <CreateRoomModal handleCloseModal={handleCloseModal} />} */}
+
+      {isMobile ? (
+        <section className="chat-page-container-mobile">
+          <ChatHeader handleShowModal={handleShowModal} />
+          <RoomContainer handleShowModal={handleShowModal} />
+          <MessageContainer />
+        </section>
+      ) : (
+        <section className="chat-page-container-desktop">
+          <RoomContainerDesktop handleShowModal={handleShowModal} />
+          <div className="chat-window-container-desktop">
+            <MessageContainer />
+          </div>
+        </section>
+      )}
       {showModal && <CreateRoomModal handleCloseModal={handleCloseModal} />}
-    </div>
+    </>
   );
 };
 
