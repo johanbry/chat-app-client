@@ -75,7 +75,7 @@ const MessageContainer = (props: Props) => {
       {typingUsers.length > 0 && (
         <p className="typing-users">{formatTypingUsers(typingUsers)}</p>
       )}
-      <form onSubmit={handleSendMessage}>
+      <form onSubmit={handleSendMessage} className="chat-message-form">
         <InputField
           type={"text"}
           value={message}
