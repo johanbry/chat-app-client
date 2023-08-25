@@ -17,12 +17,12 @@ const ChatHeader = ({ handleShowModal }: Props) => {
 
   return (
     <div className="chat-header-wrapper">
-      {isMobile && (
+      {isMobile && handleShowModal && (
         <Button
-          Icon={BiLogOutCircle}
+          Icon={IoAddCircleOutline}
           disabled={false}
-          onClick={disconnectUser}
-          className="icon-btn"
+          onClick={() => handleShowModal()}
+          className="icon-btn transparent-btn"
         />
       )}
       <div className="room-container">
@@ -30,14 +30,12 @@ const ChatHeader = ({ handleShowModal }: Props) => {
         <small>{usernames?.join(", ")}</small>
       </div>
 
-      {isMobile && handleShowModal && (
-        <Button
-          Icon={IoAddCircleOutline}
-          disabled={false}
-          onClick={() => handleShowModal()}
-          className="icon-btn"
-        />
-      )}
+      <Button
+        Icon={BiLogOutCircle}
+        disabled={false}
+        onClick={disconnectUser}
+        className="icon-btn transparent-btn"
+      />
     </div>
   );
 };
