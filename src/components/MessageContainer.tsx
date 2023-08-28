@@ -1,21 +1,21 @@
-import { ChangeEvent, FormEvent, useState, useEffect, useRef } from "react";
-import { BsSend } from "react-icons/bs";
-import { useChatContext } from "../context/ChatContext";
-import { socket } from "../socket";
+import { ChangeEvent, FormEvent, useState, useEffect, useRef } from 'react';
+import { BsSend } from 'react-icons/bs';
+import { useChatContext } from '../context/ChatContext';
+import { socket } from '../socket';
 
-import Button from "./Button";
-import InputField from "./InputField";
-import ChatHeader from "./ChatHeader";
-import MessageCard from "./MessageCard";
-import { IUser } from "../context/ChatContext";
+import Button from './Button';
+import InputField from './InputField';
+import ChatHeader from './ChatHeader';
+import MessageCard from './MessageCard';
+import { IUser } from '../context/ChatContext';
 
-import "./messageContainer.scss";
-import { formatTypingUsers } from "../utils/helpers";
+import './messageContainer.scss';
+import { formatTypingUsers } from '../utils/helpers';
 
 type Props = {};
 
 const MessageContainer = (props: Props) => {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>('');
   const { messages, sendMessage, currentRoom, user, isMobile, typingUsers } =
     useChatContext();
   const chatWindow = useRef<HTMLDivElement>(null);
@@ -23,10 +23,10 @@ const MessageContainer = (props: Props) => {
   //!FIX, skicka bara start en gång (lokalt isTyping-state?)
   useEffect(() => {
     if (message) {
-      socket.emit("user_typing_start", user?.username, currentRoom);
+      socket.emit('user_typing_start', user?.username, currentRoom);
     }
     const timer = setTimeout(() => {
-      socket.emit("user_typing_stop", currentRoom);
+      socket.emit('user_typing_stop', currentRoom);
     }, 3000);
 
     return () => {
@@ -43,7 +43,7 @@ const MessageContainer = (props: Props) => {
   const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendMessage(message);
-    setMessage("");
+    setMessage('');
   };
 
   // const handleKeyDown = () => {
@@ -77,13 +77,14 @@ const MessageContainer = (props: Props) => {
       )}
       <form onSubmit={handleSendMessage} className="chat-message-form">
         <InputField
-          type={"text"}
+          type={'text'}
           value={message}
           //onKeyDown={handleKeyDown}
           // onKeyDown={handleUserTyping}
           onChange={handleInput}
           required
           placeholder="Enter message here..."
+          className="no-border"
         />
 
         <Button
