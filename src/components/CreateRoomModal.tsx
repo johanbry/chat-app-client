@@ -1,10 +1,10 @@
-import { useState, ChangeEvent, FormEvent, MouseEvent } from "react";
+import { useState, ChangeEvent, FormEvent, MouseEvent } from 'react';
 
-import Button from "./Button";
-import InputField from "./InputField";
-import { useChatContext } from "../context/ChatContext";
+import Button from './Button';
+import InputField from './InputField';
+import { useChatContext } from '../context/ChatContext';
 
-import "./createRoomModal.scss";
+import './createRoomModal.scss';
 
 type Props = {
   handleCloseModal: () => void;
@@ -12,7 +12,7 @@ type Props = {
 
 const CreateRoomModal = ({ handleCloseModal }: Props) => {
   const { createRoom } = useChatContext();
-  const [createChatRoom, setCreateChatRoom] = useState<string>("");
+  const [createChatRoom, setCreateChatRoom] = useState<string>('');
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setCreateChatRoom(e.target.value);
@@ -32,7 +32,7 @@ const CreateRoomModal = ({ handleCloseModal }: Props) => {
   };
 
   return (
-    <div className="modal-background" onClick={(e) => handleBackgroundClick(e)}>
+    <div className="modal-background" onClick={e => handleBackgroundClick(e)}>
       <div className="modal-wrapper">
         <h1>Create Room</h1>
         <form onSubmit={handleCreateRoom}>
@@ -42,15 +42,16 @@ const CreateRoomModal = ({ handleCloseModal }: Props) => {
             onChange={handleInput}
             placeholder="Enter room name..."
             required
+            autofocus
           />
           <div>
             <Button
               onClick={handleCloseModal}
-              text={"Cancel"}
+              text={'Cancel'}
               disabled={false}
               type="button"
             />
-            <Button text={"Create room"} disabled={!createChatRoom} />
+            <Button text={'Create room'} disabled={!createChatRoom} />
           </div>
         </form>
       </div>
