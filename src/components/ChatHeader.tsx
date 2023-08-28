@@ -1,33 +1,19 @@
-import { IoAddCircleOutline } from "react-icons/io5";
-import { BiLogOutCircle } from "react-icons/bi";
+import { BiLogOutCircle } from 'react-icons/bi';
 
-import Button from "../components/Button";
-import { useChatContext } from "../context/ChatContext";
-import "./chatHeader.scss";
+import Button from '../components/Button';
+import { useChatContext } from '../context/ChatContext';
+import './chatHeader.scss';
 
-type Props = {
-  handleShowModal?: () => void;
-};
+const ChatHeader = () => {
+  const { disconnectUser, currentRoom, getUsersInRoom } = useChatContext();
 
-const ChatHeader = ({ handleShowModal }: Props) => {
-  const { disconnectUser, currentRoom, rooms, isMobile, getUsersInRoom } =
-    useChatContext();
-
-  const usernames = getUsersInRoom(currentRoom)?.map((user) => user.username);
+  const usernames = getUsersInRoom(currentRoom)?.map(user => user.username);
 
   return (
     <div className="chat-header-wrapper">
-      {isMobile && handleShowModal && (
-        <Button
-          Icon={IoAddCircleOutline}
-          disabled={false}
-          onClick={() => handleShowModal()}
-          className="icon-btn transparent-btn"
-        />
-      )}
       <div className="room-container">
         <p>{currentRoom}</p>
-        <small>{usernames?.join(", ")}</small>
+        <small>{usernames?.join(', ')}</small>
       </div>
 
       <Button
