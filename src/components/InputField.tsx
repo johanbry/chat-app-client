@@ -1,5 +1,5 @@
-import { ChangeEvent, KeyboardEvent } from "react";
-import "./inputfield.scss";
+import { ChangeEvent, KeyboardEvent } from 'react';
+import './inputfield.scss';
 type Props = {
   type: string;
   value: string;
@@ -8,6 +8,7 @@ type Props = {
   placeholder?: string;
   required: boolean;
   className?: string;
+  autofocus?: boolean;
 };
 
 const InputField = ({
@@ -18,6 +19,7 @@ const InputField = ({
   required,
   placeholder,
   className,
+  autofocus,
 }: Props) => {
   return (
     <>
@@ -29,6 +31,7 @@ const InputField = ({
         onChange={onChange}
         onKeyDown={onKeyDown}
         required={required}
+        autoFocus={autofocus}
       />
     </>
   );
