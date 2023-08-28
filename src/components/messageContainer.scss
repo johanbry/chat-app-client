@@ -1,6 +1,9 @@
-@import "../_global";
+@import '../_global';
 
 .chat-window {
+  max-width: 750px; // added
+  width: 100%; // added
+  margin: 0 auto; // added
   padding: 1rem;
   overflow-y: auto;
   flex: auto;
