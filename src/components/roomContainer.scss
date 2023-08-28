@@ -1,18 +1,28 @@
-@import "../_global";
+@import '../_global';
 
 .room-list-wrapper {
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
   padding: 0.4rem;
   overflow-x: auto;
   min-height: 3rem;
   background-color: $tertiary;
+}
+
+.room-list {
   //Hide scrollbar but allow functionality for all browsers
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none;
   }
+  display: flex;
+  overflow: scroll;
+  gap: 0.3rem;
+}
+
+.room-create-wrapper {
+  margin-left: auto;
 }
 
 @media (min-width: 768px) {
