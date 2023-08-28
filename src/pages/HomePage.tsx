@@ -1,18 +1,18 @@
-import { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import { HiChatBubbleLeftRight } from "react-icons/hi2";
-import { BiLogInCircle } from "react-icons/bi";
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { HiChatBubbleLeftRight } from 'react-icons/hi2';
+import { BiLogInCircle } from 'react-icons/bi';
 
-import { useChatContext } from "../context/ChatContext";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
+import { useChatContext } from '../context/ChatContext';
+import InputField from '../components/InputField';
+import Button from '../components/Button';
 
-import "./homepage.scss";
+import './homepage.scss';
 
 type Props = {};
 
 const HomePage = (props: Props) => {
   const { connectUser, isMobile } = useChatContext();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -23,7 +23,7 @@ const HomePage = (props: Props) => {
 
     if (!username) return;
     connectUser(username);
-    setUsername("");
+    setUsername('');
   };
 
   return (
@@ -42,14 +42,20 @@ const HomePage = (props: Props) => {
             required
             value={username}
             onChange={handleInput}
-            className="signIn"
+            // className="signIn"
+            className="no-border-right"
           />
           {/* <Button text={"Connect"} disabled={!username} /> */}
 
           {isMobile ? (
-            <Button text={"Connect"} disabled={!username} />
+            <Button text={'Connect'} disabled={!username} />
           ) : (
-            <Button Icon={BiLogInCircle} disabled={!username} />
+            <Button
+              Icon={BiLogInCircle}
+              disabled={!username}
+              className="sign-in-desktop-btn icon-btn
+            "
+            />
           )}
         </form>
       </section>
