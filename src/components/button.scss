@@ -1,4 +1,4 @@
-@import "../_global";
+@import '../_global';
 button {
   all: unset;
   background-color: $secondary;
@@ -12,6 +12,10 @@ button {
     // Disabled is a pseudo class. Thus, takes only 1 :
     opacity: 0.6;
   }
+}
+
+.sign-in-desktop-btn {
+  border-radius: 0 4px 4px 0;
 }
 
 .icon-btn {
@@ -47,9 +51,19 @@ button {
   }
 }
 
+.create-btn {
+  svg {
+    color: $secondary;
+    height: 100%;
+  }
+}
+
 /* Media Queries */
 @media (min-width: 768px) {
   .icon-btn {
     border-radius: 0 4px 4px 0;
+  }
+  .icon-send-btn {
+    border-radius: 0;
   }
 }
