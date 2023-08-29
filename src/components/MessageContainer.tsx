@@ -35,6 +35,7 @@ const MessageContainer = (props: Props) => {
     useChatContext();
   const chatWindow = useRef<HTMLDivElement>(null);
   const bottomElement = useRef<HTMLDivElement>(null);
+  const inputField = useRef<HTMLInputElement>(null);
 
   //!FIX, skicka bara start en gång (lokalt isTyping-state?)
   useEffect(() => {
@@ -98,10 +99,10 @@ const MessageContainer = (props: Props) => {
   };
 
   const handleEmojiClick = (emoji: EmojiClickData) => {
-    console.log(emoji);
-    setMessage((prev) => {
-      return prev + emoji.emoji;
-    });
+    const cursor = inputField.current?.selectionStart || 0;
+    setMessage(
+      (prev) => prev.substring(0, cursor) + emoji.emoji + prev.substring(cursor)
+    );
     handleToggleEmoji();
   };
 
@@ -152,6 +153,7 @@ const MessageContainer = (props: Props) => {
           required
           placeholder="Enter message here..."
           className="no-border"
+          refId={inputField}
         />
         <Button
           Icon={BsEmojiSmile}
