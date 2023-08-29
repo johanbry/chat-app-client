@@ -22,7 +22,9 @@ const RoomCardDesktop = ({ room, current }: Props) => {
       <h4>{room.room}</h4>
       <div>
         {room.users.map((user) => (
-          <span key={user.id}>{user.username}</span>
+          <span key={user.id} className="user-tag">
+            {user.username}
+          </span>
         ))}
       </div>
     </div>
