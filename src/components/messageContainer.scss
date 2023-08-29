@@ -1,4 +1,4 @@
-@import '../_global';
+@import "../_global";
 
 .chat-window {
   max-width: 750px; // added
@@ -19,8 +19,54 @@
   color: $lightText;
   text-align: center;
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 .chat-message-form {
   display: flex;
+}
+
+.emoji-modal-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 57px;
+}
+
+/* Dot animation */
+
+.bounching-container {
+  background-color: none;
+}
+
+.bounchingDots {
+  animation: dot ease-in-out 1s infinite;
+  background-color: $lightText;
+  display: inline-block;
+  border-radius: 50%;
+  height: 8px;
+  margin: 0 5px;
+  width: 8px;
+  margin-left: 5px;
+}
+
+.bounchingDots:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.bounchingDots:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes dot {
+  0% {
+    background-color: $lightText;
+    transform: scale(1);
+  }
+  50% {
+    background-color: $secondary;
+    transform: scale(1.3);
+  }
+  100% {
+    background-color: $lightText;
+    transform: scale(1);
+  }
 }
