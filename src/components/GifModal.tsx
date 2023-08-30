@@ -1,7 +1,8 @@
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import { Grid } from '@giphy/react-components';
 import { AiOutlineClose } from 'react-icons/ai';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
+import { IGif } from '@giphy/js-types';
 
 import InputField from './InputField';
 import './gifModal.scss';
@@ -10,7 +11,10 @@ import { useChatContext } from '../context/ChatContext';
 
 type Props = {
   handleToggleGif: () => void;
-  handleGifClick: (arg0: any, arg1: any) => void;
+  handleGifClick: (
+    arg0: IGif,
+    arg1: SyntheticEvent<HTMLElement, Event>
+  ) => void;
 };
 
 const GifModal = ({ handleToggleGif, handleGifClick }: Props) => {
