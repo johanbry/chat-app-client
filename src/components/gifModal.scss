@@ -1,3 +1,5 @@
+@import '../_global';
+
 .gif-modal-wrapper {
   width: 100%;
   height: 60vh;
@@ -18,6 +20,18 @@
 .search-gif-container {
   display: flex;
   height: 57px;
+}
+
+.giphy-terms {
+  text-align: right;
+  p {
+    font-size: 0.8rem;
+    margin-right: 5px;
+    a {
+      text-decoration: none;
+      color: $text;
+    }
+  }
 }
 
 @media (min-width: 768px) {

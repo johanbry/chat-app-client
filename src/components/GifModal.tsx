@@ -46,15 +46,24 @@ const GifModal = ({ handleToggleGif, handleGifClick }: Props) => {
       </div>
       <Grid
         onGifClick={(gif, e) => handleGifClick(gif, e)}
-        // onGifClick={onGifClick}
-        //fetchGifs={fetchGifs}
         key={searchGif}
         fetchGifs={!searchGif ? fetchGifs : fetchSearchGifs}
-        //fetchGifs={!searchGif ? () => fetchGifs(0) : fetchSearchGifs}
         width={isMobile ? windowWidth : 480}
         columns={3}
         gutter={6}
       />
+      <div className="giphy-terms">
+        <p>
+          Powered By{' '}
+          <a
+            href="https://support.giphy.com/hc/en-us/articles/360020027752-GIPHY-User-Terms-of-Service"
+            target="_blank"
+            rel="noopener noreferer"
+          >
+            GIPHY
+          </a>
+        </p>
+      </div>
     </section>
   );
 };
