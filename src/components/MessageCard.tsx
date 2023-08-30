@@ -1,29 +1,33 @@
-import { useEffect, useRef, useState } from "react";
-import { Gif } from "@giphy/react-components";
-import { IGif } from "@giphy/js-types";
-import { GiphyFetch } from "@giphy/js-fetch-api";
+import { useEffect, useRef, useState } from 'react';
+import { Gif } from '@giphy/react-components';
+import { IGif } from '@giphy/js-types';
+import { GiphyFetch } from '@giphy/js-fetch-api';
 
-import { IMessage, useChatContext } from "../context/ChatContext";
-import "./messageCard.scss";
-import { formatDate } from "../utils/helpers";
+import { IMessage, useChatContext } from '../context/ChatContext';
+import './messageCard.scss';
+import { formatDate } from '../utils/helpers';
+
+///import image from '../assets/logo.png';
 
 type Props = {
   message: IMessage;
+  handleScrollToBottom: () => void;
 };
 
-const MessageCard = ({ message }: Props) => {
+const MessageCard = ({ message, handleScrollToBottom }: Props) => {
   const { user } = useChatContext();
   const [gif, setGif] = useState<IGif | null>(null);
+  //const [gif, setGif] = useState<string | null>(null);
 
   let messageType;
 
-  if (message.from === "system") messageType = "system";
-  else if (message.from === user?.username) messageType = "own";
-  else messageType = "other";
+  if (message.from === 'system') messageType = 'system';
+  else if (message.from === user?.username) messageType = 'own';
+  else messageType = 'other';
 
   useEffect(() => {
     const fetchGif = async () => {
-      const giphy = message.message.indexOf("/gif:");
+      const giphy = message.message.indexOf('/gif:');
       if (giphy > -1) {
         const id = message.message.substring(giphy + 5, message.message.length);
         if (id) {
@@ -36,15 +40,18 @@ const MessageCard = ({ message }: Props) => {
     fetchGif();
   }, [message.message]);
 
+  useEffect(() => {
+    handleScrollToBottom();
+  }, [gif, handleScrollToBottom]);
+
   return (
     <div className="chat-message-wrapper">
-      {messageType === "system" ? (
+      {messageType === 'system' ? (
         <p className="system-message">{message.message}</p>
       ) : (
         <article className={`user-message-container ${messageType}-container`}>
           <small>{message.from}</small>
 
-          {/* <p className={`user-message ${messageType}`}> */}
           {gif ? (
             <Gif
               gif={gif}
@@ -60,7 +67,7 @@ const MessageCard = ({ message }: Props) => {
           <small>{formatDate(message.date)}</small>
           <div
             className={`${
-              messageType === "own" ? "clip-path-right" : "clip-path-left"
+              messageType === 'own' ? 'clip-path-right' : 'clip-path-left'
             }`}
           ></div>
         </article>

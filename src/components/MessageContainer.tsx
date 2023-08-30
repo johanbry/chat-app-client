@@ -5,34 +5,37 @@ import {
   useEffect,
   useRef,
   useCallback,
-} from "react";
-import { BsSend } from "react-icons/bs";
-import { AiOutlineGif } from "react-icons/ai";
-import { BsEmojiSmile } from "react-icons/bs";
-import EmojiPicker from "emoji-picker-react";
-import { EmojiClickData } from "emoji-picker-react";
+  SyntheticEvent,
+} from 'react';
+import { BsSend } from 'react-icons/bs';
+import { AiOutlineGif } from 'react-icons/ai';
+import { BsEmojiSmile } from 'react-icons/bs';
+import EmojiPicker from 'emoji-picker-react';
+import { EmojiClickData } from 'emoji-picker-react';
+import { IGif } from '@giphy/js-types';
 
-import { useChatContext } from "../context/ChatContext";
-import { socket } from "../socket";
-import Button from "./Button";
-import InputField from "./InputField";
-import ChatHeader from "./ChatHeader";
-import MessageCard from "./MessageCard";
+import { useChatContext } from '../context/ChatContext';
+import { socket } from '../socket';
+import Button from './Button';
+import InputField from './InputField';
+import ChatHeader from './ChatHeader';
+import MessageCard from './MessageCard';
 
-import "./messageContainer.scss";
-import { formatTypingUsers } from "../utils/helpers";
-import GifModal from "./GifModal";
+import './messageContainer.scss';
+import { formatTypingUsers } from '../utils/helpers';
+import GifModal from './GifModal';
 
 type Props = {};
 
 const MessageContainer = (props: Props) => {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>('');
   const [isTyping, setIsTyping] = useState(false);
   const [showGifModal, setShowGifModal] = useState(false);
   const [showEmojiModal, setShowEmojiModal] = useState(false);
 
   const { messages, sendMessage, currentRoom, user, isMobile, typingUsers } =
     useChatContext();
+
   const chatWindow = useRef<HTMLDivElement>(null);
   const bottomElement = useRef<HTMLDivElement>(null);
   const inputField = useRef<HTMLInputElement>(null);
@@ -41,11 +44,11 @@ const MessageContainer = (props: Props) => {
   useEffect(() => {
     if (message && !isTyping) {
       // Om istping=false, första knapptrycket, skicka start, annars har vi redan skickat start
-      socket.emit("user_typing_start", user?.username, currentRoom);
+      socket.emit('user_typing_start', user?.username, currentRoom);
       setIsTyping(true);
     }
     const timer = setTimeout(() => {
-      socket.emit("user_typing_stop", currentRoom);
+      socket.emit('user_typing_stop', currentRoom);
       setIsTyping(false);
     }, 3000);
 
@@ -61,24 +64,20 @@ const MessageContainer = (props: Props) => {
   const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendMessage(message);
-    setMessage("");
-    socket.emit("user_typing_stop", currentRoom);
+    setMessage('');
+    socket.emit('user_typing_stop', currentRoom);
   };
 
-  useEffect(() => {
-    // bottomElement?.current?.scrollIntoView({
-    //   behavior: "smooth",
-    //   block: "end",
-    //   inline: "end",
-    // });
-    if (chatWindow.current) {
-      //Scroll to the latest message
-      console.log("scrollheigt", chatWindow.current.scrollHeight);
-      console.log("scrollheigt+300", chatWindow.current.scrollHeight + 300);
+  const handleScrollToBottom = useCallback(() => {
+    bottomElement?.current?.scrollIntoView(false);
+  }, []);
 
-      chatWindow.current.scrollTop = chatWindow.current.scrollHeight + 300;
-    }
-  }, [messages]);
+  useEffect(() => {
+    if (messages.length < 1) return;
+    const isGifMsg = messages[messages.length - 1].message.includes('/gif:');
+    if (isGifMsg) return;
+    handleScrollToBottom();
+  }, [messages, handleScrollToBottom]);
 
   const handleToggleGif = () => {
     setShowGifModal(!showGifModal);
@@ -90,18 +89,16 @@ const MessageContainer = (props: Props) => {
     if (showGifModal) handleToggleGif();
   };
 
-  const handleGifClick = (gif, e) => {
+  const handleGifClick = (gif: IGif, e: SyntheticEvent<HTMLElement, Event>) => {
     e.preventDefault();
-    console.log("GifClick", gif);
     handleToggleGif();
-
     sendMessage(`/gif:${gif.id}`);
   };
 
   const handleEmojiClick = (emoji: EmojiClickData) => {
     const cursor = inputField.current?.selectionStart || 0;
     setMessage(
-      (prev) => prev.substring(0, cursor) + emoji.emoji + prev.substring(cursor)
+      prev => prev.substring(0, cursor) + emoji.emoji + prev.substring(cursor)
     );
     handleToggleEmoji();
   };
@@ -111,9 +108,13 @@ const MessageContainer = (props: Props) => {
       {!isMobile && <ChatHeader />}
       <section className="chat-window" ref={chatWindow}>
         {messages.map((message, index) => (
-          <MessageCard key={index} message={message} />
+          <MessageCard
+            key={index}
+            message={message}
+            handleScrollToBottom={handleScrollToBottom}
+          />
         ))}
-        <div ref={bottomElement} style={{ height: 20 }}></div>
+        <div ref={bottomElement}></div>
       </section>
 
       {typingUsers.length > 0 && (
@@ -147,7 +148,7 @@ const MessageContainer = (props: Props) => {
 
       <form onSubmit={handleSendMessage} className="chat-message-form">
         <InputField
-          type={"text"}
+          type={'text'}
           value={message}
           onChange={handleInput}
           required
