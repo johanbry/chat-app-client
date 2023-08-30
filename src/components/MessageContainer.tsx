@@ -93,6 +93,7 @@ const MessageContainer = (props: Props) => {
     e.preventDefault();
     handleToggleGif();
     sendMessage(`/gif:${gif.id}`);
+    inputField.current?.focus();
   };
 
   const handleEmojiClick = (emoji: EmojiClickData) => {
@@ -101,6 +102,7 @@ const MessageContainer = (props: Props) => {
       prev => prev.substring(0, cursor) + emoji.emoji + prev.substring(cursor)
     );
     handleToggleEmoji();
+    inputField.current?.focus();
   };
 
   return (
