@@ -1,15 +1,15 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import { IUser } from "../context/ChatContext";
+import { IUser } from '../interfaces/interfaces';
 
 export const formatDate = (date: Date) => {
   const currentDate = dayjs(date);
-  return currentDate.format("DD MMM HH:mm");
+  return currentDate.format('DD MMM HH:mm');
 };
 
 export const formatTypingUsers = (users: IUser[]) => {
   const numOfUsers = users.length;
-  let str: string = "";
+  let str: string = '';
 
   switch (numOfUsers) {
     case 1:
