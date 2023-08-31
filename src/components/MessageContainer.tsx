@@ -36,13 +36,12 @@ const MessageContainer = () => {
   const { messages, sendMessage, currentRoom, user, isMobile, typingUsers } =
     useChatContext();
 
-  const chatWindow = useRef<HTMLDivElement>(null);
   const bottomElement = useRef<HTMLDivElement>(null);
   const inputField = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (message && !isTyping) {
-      // Om istping=false, första knapptrycket, skicka start, annars har vi redan skickat start
+      // Om isTyping=false, första knapptrycket, skicka start, annars har vi redan skickat start
       socket.emit('user_typing_start', user?.username, currentRoom);
       setIsTyping(true);
     }
@@ -109,7 +108,7 @@ const MessageContainer = () => {
   return (
     <>
       {!isMobile && <ChatHeader />}
-      <section className="chat-window" ref={chatWindow}>
+      <section className="chat-window">
         {messages.map((message, index) => (
           <MessageCard
             key={index}
