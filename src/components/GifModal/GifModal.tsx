@@ -1,23 +1,21 @@
 import { GiphyFetch } from '@giphy/js-fetch-api';
 import { Grid } from '@giphy/react-components';
-import { AiOutlineClose } from 'react-icons/ai';
+import { SlMagnifier } from 'react-icons/sl';
 import { SyntheticEvent, useState } from 'react';
 import { IGif } from '@giphy/js-types';
 
 import InputField from '../InputField/InputField';
 import './gifModal.scss';
-import Button from '../Button/Button';
 import { useChatContext } from '../../context/ChatContext';
 
 type Props = {
-  handleToggleGif: () => void;
   handleGifClick: (
     arg0: IGif,
     arg1: SyntheticEvent<HTMLElement, Event>
   ) => void;
 };
 
-const GifModal = ({ handleToggleGif, handleGifClick }: Props) => {
+const GifModal = ({ handleGifClick }: Props) => {
   const [searchGif, setSearchGif] = useState('');
   const giphyFetch = import.meta.env.VITE_GIPHY_API_KEY;
   const { windowWidth, isMobile } = useChatContext();
@@ -30,18 +28,14 @@ const GifModal = ({ handleToggleGif, handleGifClick }: Props) => {
   return (
     <section className="gif-modal-wrapper">
       <div className="search-gif-container">
+        <span className="search-gif-icon">{<SlMagnifier />}</span>
         <InputField
           type="text"
           value={searchGif}
           onChange={e => setSearchGif(e.target.value)}
           required={false}
           placeholder="Search gif..."
-        />
-        <Button
-          Icon={AiOutlineClose}
-          disabled={false}
-          onClick={() => handleToggleGif()}
-          className="icon-btn "
+          className="gif-input"
         />
       </div>
       <Grid

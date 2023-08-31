@@ -130,12 +130,7 @@ const MessageContainer = () => {
         </p>
       )}
 
-      {showGifModal && (
-        <GifModal
-          handleToggleGif={handleToggleGif}
-          handleGifClick={handleGifClick}
-        />
-      )}
+      {showGifModal && <GifModal handleGifClick={handleGifClick} />}
 
       {showEmojiModal && (
         <div className="emoji-modal-wrapper">

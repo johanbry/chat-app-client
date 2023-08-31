@@ -1,11 +1,14 @@
 @import '../../_global';
 
 .gif-modal-wrapper {
+  position: absolute;
+  bottom: 51px;
+  z-index: 1;
   width: 100%;
-  height: 60vh;
+  height: 90vh;
   display: grid;
   box-shadow: 0 -14px 18px -17px rgba(250, 241, 241, 0.4);
-  background-color: black;
+  background-color: #222;
 }
 
 .giphy-grid {
@@ -19,7 +22,15 @@
 
 .search-gif-container {
   display: flex;
-  height: 57px;
+  align-items: center;
+  max-height: 41px;
+  margin: 1.2rem;
+}
+
+.search-gif-icon {
+  position: absolute;
+  left: 35px;
+  margin-top: 4px;
 }
 
 .giphy-terms {
