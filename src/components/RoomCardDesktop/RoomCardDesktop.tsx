@@ -1,5 +1,5 @@
-import { useChatContext } from '../context/ChatContext';
-import { IRoom } from '../interfaces/interfaces';
+import { useChatContext } from '../../context/ChatContext';
+import { IRoom } from '../../interfaces/interfaces';
 import './roomCardDesktop.scss';
 
 type Props = {

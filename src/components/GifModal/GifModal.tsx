@@ -4,10 +4,10 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { SyntheticEvent, useState } from 'react';
 import { IGif } from '@giphy/js-types';
 
-import InputField from './InputField';
+import InputField from '../InputField/InputField';
 import './gifModal.scss';
-import Button from './Button';
-import { useChatContext } from '../context/ChatContext';
+import Button from '../Button/Button';
+import { useChatContext } from '../../context/ChatContext';
 
 type Props = {
   handleToggleGif: () => void;

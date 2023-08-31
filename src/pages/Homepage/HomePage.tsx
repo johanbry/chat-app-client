@@ -2,9 +2,9 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { HiChatBubbleLeftRight } from 'react-icons/hi2';
 import { BiLogInCircle } from 'react-icons/bi';
 
-import { useChatContext } from '../context/ChatContext';
-import InputField from '../components/InputField';
-import Button from '../components/Button';
+import { useChatContext } from '../../context/ChatContext';
+import InputField from '../../components/InputField/InputField';
+import Button from '../../components/Button/Button';
 
 import './homepage.scss';
 

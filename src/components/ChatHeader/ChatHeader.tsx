@@ -1,7 +1,7 @@
 import { BiLogOutCircle } from 'react-icons/bi';
 
-import Button from '../components/Button';
-import { useChatContext } from '../context/ChatContext';
+import Button from '../Button/Button';
+import { useChatContext } from '../../context/ChatContext';
 import './chatHeader.scss';
 
 const ChatHeader = () => {

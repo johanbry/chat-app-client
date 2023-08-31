@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import RoomContainer from '../components/RoomContainer';
-import RoomContainerDesktop from '../components/RoomContainerDesktop';
-import MessageContainer from '../components/MessageContainer';
-import { useChatContext } from '../context/ChatContext';
-import ChatHeader from '../components/ChatHeader';
-import CreateRoomModal from '../components/CreateRoomModal';
+import RoomContainer from '../../components/RoomContainer/RoomContainer';
+import RoomContainerDesktop from '../../components/RoomContainerDesktop/RoomContainerDesktop';
+import MessageContainer from '../../components/MessageContainer/MessageContainer';
+import { useChatContext } from '../../context/ChatContext';
+import ChatHeader from '../../components/ChatHeader/ChatHeader';
+import CreateRoomModal from '../../components/CreateRoomModal/CreateRoomModal';
 
 import './chatpage.scss';
 

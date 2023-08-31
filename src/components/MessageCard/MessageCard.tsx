@@ -3,9 +3,9 @@ import { Gif } from '@giphy/react-components';
 import { IGif } from '@giphy/js-types';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 
-import { useChatContext } from '../context/ChatContext';
-import { IMessage } from '../interfaces/interfaces';
-import { formatDate } from '../utils/helpers';
+import { useChatContext } from '../../context/ChatContext';
+import { IMessage } from '../../interfaces/interfaces';
+import { formatDate } from '../../utils/helpers';
 
 import './messageCard.scss';
 

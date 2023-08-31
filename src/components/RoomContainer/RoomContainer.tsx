@@ -1,8 +1,8 @@
 import { IoAddCircleOutline } from 'react-icons/io5';
 
-import { useChatContext } from '../context/ChatContext';
-import Button from './Button';
-import RoomCard from './RoomCard';
+import { useChatContext } from '../../context/ChatContext';
+import Button from '../Button/Button';
+import RoomCard from '../RoomCard/RoomCard';
 
 import './roomContainer.scss';
 

@@ -1,10 +1,10 @@
-import { IoAddCircleOutline } from "react-icons/io5";
+import { IoAddCircleOutline } from 'react-icons/io5';
 
-import Button from "../components/Button";
-import { useChatContext } from "../context/ChatContext";
-import RoomCardDesktop from "./RoomCardDesktop";
+import Button from '../Button/Button';
+import { useChatContext } from '../../context/ChatContext';
+import RoomCardDesktop from '../RoomCardDesktop/RoomCardDesktop';
 
-import "./roomContainerDesktop.scss";
+import './roomContainerDesktop.scss';
 
 type Props = {
   handleShowModal?: () => void;

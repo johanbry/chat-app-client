@@ -1,8 +1,8 @@
 import { useState, ChangeEvent, FormEvent, MouseEvent } from 'react';
 
-import Button from './Button';
-import InputField from './InputField';
-import { useChatContext } from '../context/ChatContext';
+import Button from '../Button/Button';
+import InputField from '../InputField/InputField';
+import { useChatContext } from '../../context/ChatContext';
 
 import './createRoomModal.scss';
 

@@ -16,14 +16,14 @@ import { Theme } from 'emoji-picker-react';
 import { EmojiClickData } from 'emoji-picker-react';
 import { IGif } from '@giphy/js-types';
 
-import { useChatContext } from '../context/ChatContext';
-import { socket } from '../socket';
-import Button from './Button';
-import InputField from './InputField';
-import ChatHeader from './ChatHeader';
-import MessageCard from './MessageCard';
-import { formatTypingUsers } from '../utils/helpers';
-import GifModal from './GifModal';
+import { useChatContext } from '../../context/ChatContext';
+import { socket } from '../../socket';
+import Button from '../Button/Button';
+import InputField from '../InputField/InputField';
+import ChatHeader from '../ChatHeader/ChatHeader';
+import MessageCard from '../MessageCard/MessageCard';
+import { formatTypingUsers } from '../../utils/helpers';
+import GifModal from '../GifModal/GifModal';
 
 import './messageContainer.scss';
 
