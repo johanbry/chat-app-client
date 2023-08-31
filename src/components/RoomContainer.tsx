@@ -1,8 +1,6 @@
-//import { useState, ChangeEvent, FormEvent } from "react";
-
-import { useChatContext } from '../context/ChatContext';
 import { IoAddCircleOutline } from 'react-icons/io5';
 
+import { useChatContext } from '../context/ChatContext';
 import Button from './Button';
 import RoomCard from './RoomCard';
 
@@ -22,14 +20,6 @@ const RoomContainer = ({ handleShowModal }: Props) => {
           {rooms &&
             rooms.map((room, index) => <RoomCard key={index} room={room} />)}
         </div>
-        {/* {handleShowModal && (
-          <Button
-            Icon={IoAddCircleOutline}
-            disabled={false}
-            onClick={() => handleShowModal()}
-            className="icon-btn transparent-btn create-btn "
-          />
-        )} */}
         <div className="room-create-wrapper">
           {handleShowModal && (
             <Button
