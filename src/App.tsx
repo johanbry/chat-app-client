@@ -1,12 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import ChatPage from "./pages/ChatPage";
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import ChatPage from './pages/ChatPage';
 
-import "./_global.scss";
+import './_global.scss';
 
-type Props = {};
-
-const App = (props: Props) => {
+const App = () => {
   return (
     <main>
       <Routes>
