@@ -9,7 +9,6 @@ button {
   font-weight: 500;
   font-size: 1.3rem;
   &:disabled {
-    // Disabled is a pseudo class. Thus, takes only 1 :
     opacity: 0.6;
   }
 }
