@@ -1,0 +1,16 @@
+.sidebar-container {
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 300px;
+  background-color: rgb(92 70 140 / 15%);
+}
+
+.sidebar-room-wrapper {
+  flex: auto;
+  width: 100%;
+  overflow-y: auto;
+}

@@ -1,0 +1,25 @@
+@import '../../_global';
+
+input {
+  all: unset;
+  background: $primary;
+  border-radius: 4px;
+  padding: 1rem 0;
+  margin-bottom: 0;
+  width: 100%;
+  text-align: center;
+  &::placeholder {
+    color: $lightText;
+    text-align: center;
+  }
+}
+
+.no-border {
+  border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .no-border-right {
+    border-radius: 4px 0 0 4px;
+  }
+}

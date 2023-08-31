@@ -1,0 +1,24 @@
+@import '../../_global';
+
+.chat-header-wrapper {
+  background-color: $primary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem;
+}
+
+.room-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  p {
+    font-weight: 500;
+  }
+  small {
+    font-style: italic;
+    color: $lightText;
+    text-align: center;
+  }
+}

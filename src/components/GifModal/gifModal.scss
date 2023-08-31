@@ -1,0 +1,45 @@
+@import '../../_global';
+
+.gif-modal-wrapper {
+  width: 100%;
+  height: 60vh;
+  display: grid;
+  box-shadow: 0 -14px 18px -17px rgba(250, 241, 241, 0.4);
+  background-color: black;
+}
+
+.giphy-grid {
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.search-gif-container {
+  display: flex;
+  height: 57px;
+}
+
+.giphy-terms {
+  text-align: right;
+  p {
+    font-size: 0.8rem;
+    margin-right: 5px;
+    a {
+      text-decoration: none;
+      color: $text;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .gif-modal-wrapper {
+    width: 480px;
+    height: 50vh;
+    position: absolute;
+    right: 0;
+    bottom: 57px;
+  }
+}
