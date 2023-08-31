@@ -1,4 +1,4 @@
-@import "../_global";
+@import '../_global';
 
 .system-message {
   margin: 0 auto;
@@ -9,7 +9,7 @@
   font-size: 0.8rem;
 
   &::before {
-    content: "";
+    content: '';
     width: 50px;
     max-width: 100px;
     height: 1.5px;
@@ -19,7 +19,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     width: 50px;
     max-width: 100px;
     height: 1.5px;
@@ -58,7 +58,7 @@
   word-break: break-word;
 }
 .user-message::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -10px;
   top: 50%;
@@ -70,7 +70,7 @@
   position: relative;
 }
 
-.clip-path-right {
+/* .clip-path-right {
   position: absolute;
   background-color: $secondary;
   width: 10px;
@@ -78,7 +78,7 @@
   top: 50%;
   left: -20px;
   clip-path: polygon(25% 0, 100% 0, 0% 100%);
-}
+} */
 
 // chat bubble for other messages
 .other {
