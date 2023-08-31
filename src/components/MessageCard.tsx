@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Gif } from '@giphy/react-components';
 import { IGif } from '@giphy/js-types';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 
-import { IMessage, useChatContext } from '../context/ChatContext';
+import { useChatContext } from '../context/ChatContext';
+import { IMessage } from '../interfaces/interfaces';
 import './messageCard.scss';
 import { formatDate } from '../utils/helpers';
 
