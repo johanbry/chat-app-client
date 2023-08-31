@@ -24,7 +24,9 @@ const CreateRoomModal = ({ handleCloseModal }: Props) => {
     handleCloseModal();
   };
 
-  const handleBackgroundClick = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleBackgroundClick = (
+    e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
+  ) => {
     if (e.target == e.currentTarget) {
       handleCloseModal();
     }
