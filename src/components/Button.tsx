@@ -1,5 +1,5 @@
-import { ElementType } from "react";
-import "./button.scss";
+import { ElementType } from 'react';
+import './button.scss';
 
 type Props = {
   text?: string;
@@ -7,7 +7,7 @@ type Props = {
   disabled?: boolean;
   onChange?: () => void;
   onClick?: () => void;
-  type?: "submit" | "button" | "reset";
+  type?: 'submit' | 'button' | 'reset';
   className?: string;
 };
 
@@ -18,7 +18,7 @@ const Button = ({
   onChange,
   onClick,
   className,
-  type = "submit",
+  type = 'submit',
 }: Props) => {
   return (
     <button
@@ -26,9 +26,7 @@ const Button = ({
       onChange={onChange}
       type={type}
       onClick={onClick}
-      // className={Icon ? "icon-btn" : "" }
       className={className}
-      //className={disabled ? "disabled" : ""}
     >
       {text}
       {Icon && <Icon />}
