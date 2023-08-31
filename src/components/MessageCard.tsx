@@ -5,10 +5,9 @@ import { GiphyFetch } from '@giphy/js-fetch-api';
 
 import { useChatContext } from '../context/ChatContext';
 import { IMessage } from '../interfaces/interfaces';
-import './messageCard.scss';
 import { formatDate } from '../utils/helpers';
 
-///import image from '../assets/logo.png';
+import './messageCard.scss';
 
 type Props = {
   message: IMessage;
@@ -18,7 +17,6 @@ type Props = {
 const MessageCard = ({ message, handleScrollToBottom }: Props) => {
   const { user } = useChatContext();
   const [gif, setGif] = useState<IGif | null>(null);
-  //const [gif, setGif] = useState<string | null>(null);
 
   let messageType;
 
@@ -63,7 +61,6 @@ const MessageCard = ({ message, handleScrollToBottom }: Props) => {
           ) : (
             <p className={`user-message ${messageType}`}>{message.message}</p>
           )}
-          {/* </p> */}
 
           <small>{formatDate(message.date)}</small>
           <div
