@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { HiChatBubbleLeftRight } from 'react-icons/hi2';
 import { BiLogInCircle } from 'react-icons/bi';
 
@@ -8,9 +8,7 @@ import Button from '../components/Button';
 
 import './homepage.scss';
 
-type Props = {};
-
-const HomePage = (props: Props) => {
+const HomePage = () => {
   const { connectUser, isMobile } = useChatContext();
   const [username, setUsername] = useState('');
 
@@ -35,18 +33,14 @@ const HomePage = (props: Props) => {
       <span className="divider"></span>
       <section className="homepage-form-container">
         <form onSubmit={handleConnect}>
-          {/* <label htmlFor="username">Please fill in username</label> */}
           <InputField
             type="text"
             placeholder="Enter username..."
             required
             value={username}
             onChange={handleInput}
-            // className="signIn"
             className="no-border-right"
           />
-          {/* <Button text={"Connect"} disabled={!username} /> */}
-
           {isMobile ? (
             <Button text={'Connect'} disabled={!username} />
           ) : (
