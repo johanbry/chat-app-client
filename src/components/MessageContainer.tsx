@@ -11,6 +11,8 @@ import { BsSend } from 'react-icons/bs';
 import { AiOutlineGif } from 'react-icons/ai';
 import { BsEmojiSmile } from 'react-icons/bs';
 import EmojiPicker from 'emoji-picker-react';
+import { Theme } from 'emoji-picker-react';
+
 import { EmojiClickData } from 'emoji-picker-react';
 import { IGif } from '@giphy/js-types';
 
@@ -20,14 +22,12 @@ import Button from './Button';
 import InputField from './InputField';
 import ChatHeader from './ChatHeader';
 import MessageCard from './MessageCard';
-
-import './messageContainer.scss';
 import { formatTypingUsers } from '../utils/helpers';
 import GifModal from './GifModal';
 
-type Props = {};
+import './messageContainer.scss';
 
-const MessageContainer = (props: Props) => {
+const MessageContainer = () => {
   const [message, setMessage] = useState<string>('');
   const [isTyping, setIsTyping] = useState(false);
   const [showGifModal, setShowGifModal] = useState(false);
@@ -40,7 +40,6 @@ const MessageContainer = (props: Props) => {
   const bottomElement = useRef<HTMLDivElement>(null);
   const inputField = useRef<HTMLInputElement>(null);
 
-  //!FIX, skicka bara start en gång (lokalt isTyping-state?)
   useEffect(() => {
     if (message && !isTyping) {
       // Om istping=false, första knapptrycket, skicka start, annars har vi redan skickat start
@@ -72,8 +71,10 @@ const MessageContainer = (props: Props) => {
     bottomElement?.current?.scrollIntoView(false);
   }, []);
 
+  // Anropa scroll funktion när textmeddelande uppdateras och/eller funktion anropas ej om GIF meddelande
   useEffect(() => {
     if (messages.length < 1) return;
+    // Kolla om sista meddelande innehåller prefix /gif:
     const isGifMsg = messages[messages.length - 1].message.includes('/gif:');
     if (isGifMsg) return;
     handleScrollToBottom();
@@ -140,7 +141,7 @@ const MessageContainer = (props: Props) => {
       {showEmojiModal && (
         <div className="emoji-modal-wrapper">
           <EmojiPicker
-            theme="dark"
+            theme={Theme.DARK}
             previewConfig={{ showPreview: false }}
             skinTonesDisabled={true}
             onEmojiClick={handleEmojiClick}
