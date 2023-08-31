@@ -1,16 +1,16 @@
-import { IRoom, useChatContext } from "../context/ChatContext";
-import "./roomCard.scss";
+import { useChatContext } from '../context/ChatContext';
+import { IRoom } from '../interfaces/interfaces';
+import './roomCard.scss';
 
 type Props = {
   room: IRoom;
 };
 
 const RoomCard = ({ room }: Props) => {
-  const { createRoom } = useChatContext();
+  const { createJoinRoom } = useChatContext();
 
   const handleJoinRoom = () => {
-    //!FIXME:
-    createRoom(room.room);
+    createJoinRoom(room.room);
   };
 
   return (

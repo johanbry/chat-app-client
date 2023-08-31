@@ -11,17 +11,16 @@ type Props = {
 };
 
 const CreateRoomModal = ({ handleCloseModal }: Props) => {
-  const { createRoom } = useChatContext();
+  const { createJoinRoom } = useChatContext();
   const [createChatRoom, setCreateChatRoom] = useState<string>('');
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setCreateChatRoom(e.target.value);
-    // createRoom(createChatRoom);
   };
 
   const handleCreateRoom = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createRoom(createChatRoom);
+    createJoinRoom(createChatRoom);
     handleCloseModal();
   };
 
