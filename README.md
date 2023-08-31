@@ -1,27 +1,43 @@
-# React + TypeScript + Vite
+# Group project ChatApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Group project provided by Medieinstitutet. Task was to create a fullstack chatapp using socket. This is the repo for our client.
 
-Currently, two official plugins are available:
+## Set up and run project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Start vite server in dev mode using commands below.
 
-## Expanding the ESLint configuration
+`npm install`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`npm run dev`
 
-- Configure the top-level `parserOptions` property like this:
+Click provided localhost link in terminal
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Create .env file
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+See variables used in `.env-example` file and create them in your `.env` file
+
+## Learning objectives
+
+- Using Typescript
+- Listen and send events with socket.io
+- React
+- React Router
+- External API to fetch Gif using Giphy
+
+## Stack used
+
+- React
+- Typescript
+- SCSS
+- Vite
+- Socket.io
+
+## Group members:
+
+- [Therese Lindén](https://github.com/thereselinden/)
+- [Johan Brynielsson](https://github.com/johanbry/)
+- [Johan Lindell](https://github.com/Lokacitron123/)
+
+## Backend repo:
+
+[Visit repo](https://github.com/johanbry/chat-app-server)
